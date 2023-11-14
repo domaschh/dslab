@@ -14,6 +14,7 @@ import at.ac.tuwien.dsg.orvell.Shell;
 import at.ac.tuwien.dsg.orvell.StopShellException;
 import at.ac.tuwien.dsg.orvell.annotation.Command;
 import dslab.ComponentFactory;
+import dslab.data.Email;
 import dslab.protocols.TransferProtocol;
 import dslab.util.Config;
 
@@ -57,7 +58,9 @@ public class TransferServer implements ITransferServer, Runnable {
             Socket socket = serverSocket.accept();
             while (socket.isConnected()) {
                 sockets.add(socket);
-                executor.execute(new TransferProtocol(componentId, socket, config));
+                executor.execute(new TransferProtocol(componentId, socket, (Email completeMail) -> {
+                    shell.out().println("Sent email");
+                }));
                 socket = serverSocket.accept();
             }
         } catch (IOException e) {

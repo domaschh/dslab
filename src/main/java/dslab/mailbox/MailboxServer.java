@@ -7,8 +7,10 @@ import java.io.UncheckedIOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 import at.ac.tuwien.dsg.orvell.Shell;
 import at.ac.tuwien.dsg.orvell.StopShellException;
@@ -26,15 +28,15 @@ public class MailboxServer implements IMailboxServer, Runnable {
     private final Config config;
     private final ServerSocket transferSocket;
     private final ServerSocket authSocket;
-    private final ConcurrentMap<String, ConcurrentSkipListSet<Email>> database = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, ConcurrentLinkedQueue<Email>> database = new ConcurrentHashMap<>();
 
     /**
      * Creates a new server instance.
      *
      * @param componentId the id of the component that corresponds to the Config resource
-     * @param config the component config
-     * @param in the input stream to read console input from
-     * @param out the output stream to write console output to
+     * @param config      the component config
+     * @param in          the input stream to read console input from
+     * @param out         the output stream to write console output to
      */
     public MailboxServer(String componentId, Config config, InputStream in, PrintStream out) {
         this.componentId = componentId;
@@ -55,11 +57,11 @@ public class MailboxServer implements IMailboxServer, Runnable {
     public void run() {
         ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE);
         new Thread(shell).start();
-        this.startAthListening(executor);
         this.startTransferListening(executor);
+        this.startAuthListening(executor);
     }
 
-    private void startTransferListening(ExecutorService executor) {
+    private void startAuthListening(ExecutorService executor) {
         executor.execute(() -> {
             try {
                 Socket socket = authSocket.accept();
@@ -73,13 +75,27 @@ public class MailboxServer implements IMailboxServer, Runnable {
         });
     }
 
-    private void startAthListening(ExecutorService executor) {
+    private void startTransferListening(ExecutorService executor) {
         executor.execute(() -> {
             try {
                 Socket socket = transferSocket.accept();
                 while (socket.isConnected()) {
                     sockets.add(socket);
-                    executor.execute(new TransferProtocol(componentId, socket, config));
+                    executor.execute(new TransferProtocol(componentId, socket, (Email receivedMail) -> {
+                        List<String> rcvdUsernames = receivedMail
+                                .getTo()
+                                .stream()
+                                .map(recipientMail -> recipientMail.split("@")[0])
+                                .collect(Collectors.toList());
+                        for (String username : rcvdUsernames) {
+                            database.merge(username,
+                                    new ConcurrentLinkedQueue<>(Collections.singleton(receivedMail)),
+                                    (existingSet, newSet) -> {
+                                        existingSet.add(receivedMail);
+                                        return existingSet;
+                                    });
+                        }
+                    }));
                     socket = transferSocket.accept();
                 }
             } catch (IOException e) {

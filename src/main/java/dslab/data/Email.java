@@ -59,7 +59,7 @@ public class Email {
     }
 
     public boolean isReady() {
-        return !(this.from == null && this.body==null && this.subject == null && this.to == null);
+        return (this.from != null && this.body!=null && this.subject != null && this.to != null);
     }
 
     private boolean isValidMail(String input) {

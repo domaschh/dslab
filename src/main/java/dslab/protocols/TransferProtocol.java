@@ -10,21 +10,22 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UncheckedIOException;
 import java.net.Socket;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class TransferProtocol implements Runnable {
-    private Config config;
     private Config domainsConfig;
     private Shell shell;
     private final String componentId;
     private Email email;
+    Consumer<Email> sendCallback;
 
-    public TransferProtocol(String componentId, Socket socket, Config config) throws IOException {
+    public TransferProtocol(String componentId, Socket socket, Consumer<Email> sendCallback) throws IOException {
         this.shell = new Shell(socket.getInputStream(), new PrintStream(socket.getOutputStream()));
         this.domainsConfig = new Config("domains");
         this.componentId = componentId;
-        this.config = config;
         this.email = new Email();
+        this.sendCallback = sendCallback;
         this.setupShellCallbacks();
     }
 
@@ -60,7 +61,13 @@ public class TransferProtocol implements Runnable {
             this.emailSetter(input, this.email::setBody);
         });
         shell.register("send", (input, context) -> {
-            this.emailSetter(input, a -> "Sent email");
+            if (this.email.isReady()) {
+                sendCallback.accept(this.email);
+                shell.out().println("ok");
+                this.email = new Email();
+            } else {
+                shell.out().println(this.email.whatIsMissing());
+            }
         });
         shell.register("quit", (input, context) -> {
             shell.out().println("ok bye");

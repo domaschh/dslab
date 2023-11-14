@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UncheckedIOException;
 import java.net.Socket;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -16,10 +17,10 @@ public class AuthProtocol implements Runnable {
     private final Config users;
     private Shell shell;
     private final String componentId;
-    private final ConcurrentMap<String, ConcurrentSkipListSet<Email>> database;
+    private final ConcurrentMap<String, ConcurrentLinkedQueue<Email>> database;
     private String loggedInUsername;
 
-    public AuthProtocol(String componentId, Socket socket, Config config, ConcurrentMap<String, ConcurrentSkipListSet<Email>> database) throws IOException {
+    public AuthProtocol(String componentId, Socket socket, Config config, ConcurrentMap<String, ConcurrentLinkedQueue<Email>> database) throws IOException {
         this.shell = new Shell(socket.getInputStream(), new PrintStream(socket.getOutputStream()));
         this.componentId = componentId;
         this.users = new Config(config.getString("users.config"));
@@ -60,11 +61,11 @@ public class AuthProtocol implements Runnable {
             }
             if (input.getArguments().isEmpty()) {
                 int i = 0;
-                ConcurrentSkipListSet<Email> usermails = this.database.get(loggedInUsername);
+                ConcurrentLinkedQueue<Email> usermails = this.database.get(loggedInUsername);
                 if (usermails == null) {
                     shell.out().println("no mails for this users");
                 } else {
-                    usermails.stream().sorted().forEach(email -> {
+                    usermails.forEach(email -> {
                         shell.out().println(i + " " + email.getFrom() + " " + email.getSubject());
                     });
                 }
@@ -78,10 +79,12 @@ public class AuthProtocol implements Runnable {
                 shell.out().println("must be logged in");
                 return;
             }
-            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 1) {
+
+            var args=  input.getArguments();
+            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(1)) >= 0) {
                 int indexToFind = Integer.parseInt(input.getArguments().get(0));
                 int i = 0;
-                ConcurrentSkipListSet<Email> usermails = this.database.get(loggedInUsername);
+                ConcurrentLinkedQueue<Email> usermails = this.database.get(loggedInUsername);
                 if (usermails == null) {
                     shell.out().println("error no mail found for given id");
                 } else {
@@ -101,10 +104,10 @@ public class AuthProtocol implements Runnable {
                 shell.out().println("must be logged in");
                 return;
             }
-            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 1) {
+            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 0) {
                 int indexToFind = Integer.parseInt(input.getArguments().get(0));
                 int i = 0;
-                ConcurrentSkipListSet<Email> usermails = this.database.get(loggedInUsername);
+                ConcurrentLinkedQueue<Email> usermails = this.database.get(loggedInUsername);
                 if (usermails == null) {
                     shell.out().println("error no mail found for given id");
                     return;
