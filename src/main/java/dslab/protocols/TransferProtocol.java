@@ -13,11 +13,11 @@ import java.net.Socket;
 import java.util.function.Function;
 
 public class TransferProtocol implements Runnable {
-    private Email email;
-    private Shell shell;
     private Config config;
     private Config domainsConfig;
+    private Shell shell;
     private final String componentId;
+    private Email email;
 
     public TransferProtocol(String componentId, Socket socket, Config config) throws IOException {
         this.shell = new Shell(socket.getInputStream(), new PrintStream(socket.getOutputStream()));
@@ -25,15 +25,12 @@ public class TransferProtocol implements Runnable {
         this.componentId = componentId;
         this.config = config;
         this.email = new Email();
-        this.shell.setPrompt(componentId + "> ");
-        this.shell.setPrompt("");
         this.setupShellCallbacks();
     }
 
     @Override
     public void run() {
         shell.setPrompt(componentId + "> ");
-        shell.setPrompt("");
         shell.out().println("ok DMTP");
         try {
             shell.run();

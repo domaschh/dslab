@@ -18,7 +18,7 @@ import dslab.protocols.TransferProtocol;
 import dslab.util.Config;
 
 public class TransferServer implements ITransferServer, Runnable {
-    static int POOL_SIZE = 50 * Runtime.getRuntime().availableProcessors();
+    static int POOL_SIZE = Runtime.getRuntime().availableProcessors();
 
     private final String componentId;
     private final List<Socket> sockets;

@@ -1,7 +1,7 @@
 dslab/util/Config.java
  dslab.util.Config
-dslab/mailbox/MailboxServer.java
- dslab.mailbox.MailboxServer
+dslab/util/EmailResponseFactory.java
+ dslab.util.EmailResponseFactory
 dslab/monitoring/MonitoringServer.java
  dslab.monitoring.MonitoringServer
 dslab/mailbox/IMailboxServer.java
@@ -14,19 +14,19 @@ dslab/util/MonitoringConsumer.java
  dslab.util.MonitoringConsumer
 dslab/monitoring/IMonitoringServer.java
  dslab.monitoring.IMonitoringServer
-dslab/protocols/AuthProtocol.java
- dslab.protocols.AuthProtocol
+dslab/util/ResponseTask.java
+ dslab.util.ResponseTask
 dslab/data/Email.java
  dslab.data.Email
 dslab/util/ForwardTask.java
  dslab.util.ForwardTask
+dslab/protocols/TransferProtocol.java
+ dslab.protocols.TransferProtocol
 dslab/transfer/TransferServer.java
  dslab.transfer.TransferServer
 dslab/ComponentFactory.java
  dslab.ComponentFactory
-dslab/util/ResponseTask.java
- dslab.util.ResponseTask
-dslab/protocols/TransferProtocol.java
- dslab.protocols.TransferProtocol
-dslab/util/EmailResponseFactory.java
- dslab.util.EmailResponseFactory
+dslab/protocols/AuthProtocol.java
+ dslab.protocols.AuthProtocol
+dslab/mailbox/MailboxServer.java
+ dslab.mailbox.MailboxServer
