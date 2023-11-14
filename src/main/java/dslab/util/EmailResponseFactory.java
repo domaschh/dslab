@@ -1,4 +1,4 @@
-package dslab.protocols;
+package dslab.util;
 
 import dslab.data.Email;
 

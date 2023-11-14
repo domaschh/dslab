@@ -1,6 +1,4 @@
-package dslab.protocols;
-
-import dslab.util.Config;
+package dslab.util;
 
 import java.io.IOException;
 import java.net.ServerSocket;

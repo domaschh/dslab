@@ -6,15 +6,13 @@ import java.io.PrintStream;
 import java.net.DatagramSocket;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import at.ac.tuwien.dsg.orvell.Shell;
 import at.ac.tuwien.dsg.orvell.StopShellException;
 import at.ac.tuwien.dsg.orvell.annotation.Command;
 import dslab.ComponentFactory;
 import dslab.util.Config;
-import dslab.protocols.UsageStatistic;
-import dslab.protocols.MonitoringConsumer;
+import dslab.util.MonitoringConsumer;
 
 public class MonitoringServer implements IMonitoringServer {
     private final Config config;

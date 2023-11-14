@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dslab.monitoring.MonitoringServerProtocolTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-14T10:09:13" hostname="e233-131.eduroam.tuwien.ac.at" time="16.588">
+  <properties/>
+  <testcase name="mon_02_servers_returnsCorrectStatistics" classname="dslab.monitoring.MonitoringServerProtocolTest" time="8.32"/>
+  <testcase name="mon_01_addresses_returnsCorrectStatistics" classname="dslab.monitoring.MonitoringServerProtocolTest" time="8.268"/>
+  <system-out><![CDATA[Socket closed
+Socket closed
+Socket closed
+Socket closed
+Test Run Finished: MonitoringServerProtocolTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mon_02_servers_returnsCorrectStatistics                                          0,75            0,75           
+mon_01_addresses_returnsCorrectStatistics                                        0,75            0,75           
+Total points possible: 1.5
+Total points earned: 1.5
+
+]]></system-out>
+  <system-err><![CDATA[Nov 14, 2023 11:09:16 AM dslab.monitoring.MonitoringServerProtocolTest mon_02_servers_returnsCorrectStatistics
+INFO: Sending three monitoring packets to monitoring socket
+Nov 14, 2023 11:09:24 AM dslab.monitoring.MonitoringServerProtocolTest mon_01_addresses_returnsCorrectStatistics
+INFO: Sending three monitoring packets to monitoring socket
+]]></system-err>
+</testsuite>

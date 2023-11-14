@@ -11,13 +11,14 @@ public class Email {
     private List<String> to;
     private String subject;
     private String body;
+    public boolean undefined = true;
 
     public String getFrom() {
         return from;
     }
 
     public String setFrom(String from) {
-        if (this.isMail(from)) {
+        if (this.isValidMail(from)) {
             this.from = from;
             return "ok";
         } else {
@@ -31,11 +32,11 @@ public class Email {
 
     public String setTo(String to) {
         String[] recipients = to.split(",");
-        if (recipients.length > 0 && Arrays.stream(recipients).allMatch(this::isMail)) {
+        if (recipients.length > 0 && Arrays.stream(recipients).allMatch(this::isValidMail)) {
             this.to = Arrays.stream(recipients).collect(Collectors.toList());
-            return "ok";
+            return "ok " + this.to.size();
         } else {
-            return "error wrong email formatting provided";
+            return "error wrong email recipient format provided";
         }
     }
 
@@ -61,7 +62,7 @@ public class Email {
         return !(this.from == null && this.body==null && this.subject == null && this.to == null);
     }
 
-    private boolean isMail(String input) {
+    private boolean isValidMail(String input) {
         return Pattern.matches(VALIDATION_STRING, input);
     }
 

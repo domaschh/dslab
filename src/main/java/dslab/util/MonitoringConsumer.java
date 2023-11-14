@@ -1,4 +1,4 @@
-package dslab.protocols;
+package dslab.util;
 
 import at.ac.tuwien.dsg.orvell.Shell;
 
@@ -29,7 +29,7 @@ public class MonitoringConsumer extends Thread implements Runnable {
         DatagramPacket packet= new DatagramPacket(buffer, buffer.length);
 
         try {
-            while (running) {
+             while (running) {
                 socket.receive(packet);
                 String request = new String(packet.getData());
 
