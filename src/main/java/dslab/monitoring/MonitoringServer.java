@@ -11,6 +11,7 @@ import at.ac.tuwien.dsg.orvell.Shell;
 import at.ac.tuwien.dsg.orvell.StopShellException;
 import at.ac.tuwien.dsg.orvell.annotation.Command;
 import dslab.ComponentFactory;
+import dslab.data.Email;
 import dslab.util.Config;
 import dslab.util.MonitoringConsumer;
 
@@ -33,12 +34,26 @@ public class MonitoringServer implements IMonitoringServer {
     public MonitoringServer(String componentId, Config config, InputStream in, PrintStream out) {
         this.config = config;
         shell = new Shell(in, out);
-        shell.register(this);
-        shell.setPrompt("");
+        shell.setPrompt(componentId + ">");
 
         //Are passed to filled by the consumer
         this.serverHostAndPort = new HashMap<>();
         this.senderEmail = new HashMap<>();
+
+        this.setupShellCallbacks();
+
+    }
+
+    private void setupShellCallbacks() {
+        shell.register("addresses", (input, context) -> {
+            this.addresses();
+        });
+        shell.register("servers", (input, context) -> {
+            this.servers();
+        });
+        shell.register("shutdown", (input, context) -> {
+            this.shutdown();
+        });
     }
 
     @Override
@@ -55,7 +70,6 @@ public class MonitoringServer implements IMonitoringServer {
     }
 
     @Override
-    @Command
     public void addresses() {
         if (senderEmail.isEmpty()) {
             shell.out().println("no addresses records yet");
@@ -67,7 +81,6 @@ public class MonitoringServer implements IMonitoringServer {
     }
 
     @Override
-    @Command
     public void servers() {
         if (serverHostAndPort.isEmpty()) {
             shell.out().println("no server records yet");
@@ -79,7 +92,6 @@ public class MonitoringServer implements IMonitoringServer {
     }
 
     @Override
-    @Command
     public void shutdown() {
         consumer.stopConsumer();
         throw new StopShellException();

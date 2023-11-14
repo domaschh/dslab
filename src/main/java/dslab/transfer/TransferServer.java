@@ -1,8 +1,7 @@
 package dslab.transfer;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,7 @@ public class TransferServer implements ITransferServer, Runnable {
     private final Shell shell;
     private final ServerSocket serverSocket;
     private final Config domains;
+    private final Config config;
 
     /**
      * Creates a new server instance.
@@ -36,6 +36,7 @@ public class TransferServer implements ITransferServer, Runnable {
         this.componentId = componentId;
         this.sockets = new ArrayList<>();
         this.domains = new Config("domains");
+        this.config = config;
         this.shell = new Shell(in, out);
         this.shell.setPrompt(componentId + "> ");
         this.shell.register("shutdown", (input, context) -> this.shutdown());
@@ -78,8 +79,9 @@ public class TransferServer implements ITransferServer, Runnable {
                         Socket s = new Socket(address, port);
                         BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream(), StandardCharsets.UTF_8));
                         PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-                        this.sendEmail(completeMail, in, out);
+                        this.sendEmailToMailboxServer(completeMail, in, out);
                         shell.out().println("Mail sent");
+                        this.sendMailToMonitoringServer(completeMail);
                         s.close();
                     } catch (IOException e) {
                         shell.out().println("Sending mail failed");
@@ -90,45 +92,56 @@ public class TransferServer implements ITransferServer, Runnable {
         }
     }
 
-    private void sendEmail(Email completeMail, BufferedReader in, PrintWriter out) throws IOException {
+    private void sendMailToMonitoringServer(Email completeMail) {
+        byte[] buffer = ("127.0.0.1:" + config.getString("tcp.port") + " " + completeMail.getFrom()).getBytes();
+        try {
+            DatagramSocket socket = new DatagramSocket();
+            socket.send(new DatagramPacket(buffer, buffer.length, InetAddress.getByName(config.getString("monitoring.host")), config.getInt("monitoring.port")));
+            socket.close();
+        } catch (IOException e) {
+            shell.out().println(e.getMessage());
+        }
+    }
+
+    private void sendEmailToMailboxServer(Email completeMail, BufferedReader in, PrintWriter out) throws IOException {
         String s = in.readLine();
-        if(!s.equals("ok DMTP")) {
+        if (!s.equals("ok DMTP")) {
             this.shell.out().println("Transfer failed");
             throw new IOException("Transfer failed connecting expected: ok DMTP but got: " + s);
         }
         out.println("begin");
         s = in.readLine();
-        if(!s.equals("mailbox-earth-planet> ok")) {
+        if (!s.equals("mailbox-earth-planet> ok")) {
             this.shell.out().println("Transfer failed" + s);
             throw new IOException("Transfer failed connecting expected: ok but got: " + s);
         }
         out.println("from " + completeMail.getFrom());
         s = in.readLine();
-        if(!s.equals("mailbox-earth-planet> ok")) {
+        if (!s.equals("mailbox-earth-planet> ok")) {
             this.shell.out().println("Transfer failed" + s);
             throw new IOException("Transfer failed connecting expected: ok but got: " + s);
         }
         out.println("to " + String.join(",", completeMail.getTo()));
         s = in.readLine();
-        if(!s.equals("mailbox-earth-planet> ok " + completeMail.getTo().size())) {
+        if (!s.equals("mailbox-earth-planet> ok " + completeMail.getTo().size())) {
             this.shell.out().println("Transfer failed" + s);
             throw new IOException("Transfer failed connecting expected: ok but got: " + s);
         }
         out.println("subject " + completeMail.getSubject());
         s = in.readLine();
-        if(!s.equals("mailbox-earth-planet> ok")) {
+        if (!s.equals("mailbox-earth-planet> ok")) {
             this.shell.out().println("Transfer failed" + s);
             throw new IOException("Transfer failed connecting expected: ok but got: " + s);
         }
         out.println("data " + completeMail.getBody());
         s = in.readLine();
-        if(!s.equals("mailbox-earth-planet> ok")) {
+        if (!s.equals("mailbox-earth-planet> ok")) {
             this.shell.out().println("Transfer failed" + s);
             throw new IOException("Transfer failed connecting expected: ok but got: " + s);
         }
         out.println("send ");
         s = in.readLine();
-        if(!s.equals("mailbox-earth-planet> ok")) {
+        if (!s.equals("mailbox-earth-planet> ok")) {
             this.shell.out().println("Transfer failed" + s);
             throw new IOException("Transfer failed connecting expected: ok but got: " + s);
         }
