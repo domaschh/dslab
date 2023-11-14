@@ -11,7 +11,6 @@ import java.io.UncheckedIOException;
 import java.net.Socket;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 public class AuthProtocol implements Runnable {
     private final Config users;
@@ -30,8 +29,8 @@ public class AuthProtocol implements Runnable {
 
     @Override
     public void run() {
-        shell.setPrompt(componentId + "> ");
         shell.out().println("ok DMAP");
+        shell.setPrompt("");
         try {
             shell.run();
         } catch (UncheckedIOException ignored) {
@@ -60,7 +59,7 @@ public class AuthProtocol implements Runnable {
                 return;
             }
             if (input.getArguments().isEmpty()) {
-                int i = 0;
+                int i = 1;
                 ConcurrentLinkedQueue<Email> usermails = this.database.get(loggedInUsername);
                 if (usermails == null) {
                     shell.out().println("no mails for this users");
@@ -80,9 +79,9 @@ public class AuthProtocol implements Runnable {
                 return;
             }
 
-            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 0) {
+            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 1) {
                 int indexToFind = Integer.parseInt(input.getArguments().get(0));
-                int i = 0;
+                int i = 1;
                 ConcurrentLinkedQueue<Email> savedMailsForUser = this.database.get(loggedInUsername);
                 if (savedMailsForUser == null) {
                     shell.out().println("error no mail found for given id");
@@ -103,9 +102,9 @@ public class AuthProtocol implements Runnable {
                 shell.out().println("must be logged in");
                 return;
             }
-            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 0) {
+            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 1) {
                 int indexToFind = Integer.parseInt(input.getArguments().get(0));
-                int i = 0;
+                int i = 1;
                 ConcurrentLinkedQueue<Email> savedMailsForUser = this.database.get(loggedInUsername);
                 if (savedMailsForUser == null) {
                     shell.out().println("error no mail found for given id");
@@ -134,7 +133,7 @@ public class AuthProtocol implements Runnable {
         });
         shell.register("quit", (input, context) -> {
             loggedInUsername = null;
-            shell.out().println("ok");
+            shell.out().println("ok bye");
             throw new StopShellException();
         });
     }

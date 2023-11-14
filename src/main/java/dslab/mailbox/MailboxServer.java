@@ -43,8 +43,8 @@ public class MailboxServer implements IMailboxServer, Runnable {
         this.sockets = new ArrayList<>();
         this.config = config;
         this.shell = new Shell(in, out);
-        this.shell.setPrompt(componentId + "> ");
         this.shell.register("shutdown", (input, context) -> this.shutdown());
+        shell.setPrompt("");
         try {
             transferSocket = new ServerSocket(config.getInt("dmtp.tcp.port"));
             authSocket = new ServerSocket(config.getInt("dmap.tcp.port"));
@@ -81,7 +81,7 @@ public class MailboxServer implements IMailboxServer, Runnable {
                 Socket socket = transferSocket.accept();
                 while (socket.isConnected()) {
                     sockets.add(socket);
-                    executor.execute(new TransferProtocol(componentId, socket, (Email receivedMail) -> {
+                    executor.execute(new TransferProtocol(componentId, socket, config,(Email receivedMail) -> {
                         List<String> rcvdUsernames = receivedMail
                                 .getTo()
                                 .stream()

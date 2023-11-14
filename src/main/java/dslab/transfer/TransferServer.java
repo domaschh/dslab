@@ -38,7 +38,6 @@ public class TransferServer implements ITransferServer, Runnable {
         this.domains = new Config("domains");
         this.config = config;
         this.shell = new Shell(in, out);
-        this.shell.setPrompt(componentId + "> ");
         this.shell.register("shutdown", (input, context) -> this.shutdown());
 
         try {
@@ -57,7 +56,7 @@ public class TransferServer implements ITransferServer, Runnable {
             Socket socket = serverSocket.accept();
             while (socket.isConnected()) {
                 sockets.add(socket);
-                receiveExecutor.execute(new TransferProtocol(componentId, socket, (Email completeMail) -> {
+                receiveExecutor.execute(new TransferProtocol(componentId, socket, config, (Email completeMail) -> {
                     sendEmails(completeMail, sendExecutor);
                 }));
                 socket = serverSocket.accept();

@@ -9,9 +9,7 @@ import java.util.Map;
 
 import at.ac.tuwien.dsg.orvell.Shell;
 import at.ac.tuwien.dsg.orvell.StopShellException;
-import at.ac.tuwien.dsg.orvell.annotation.Command;
 import dslab.ComponentFactory;
-import dslab.data.Email;
 import dslab.util.Config;
 import dslab.util.MonitoringConsumer;
 
@@ -34,7 +32,7 @@ public class MonitoringServer implements IMonitoringServer {
     public MonitoringServer(String componentId, Config config, InputStream in, PrintStream out) {
         this.config = config;
         shell = new Shell(in, out);
-        shell.setPrompt(componentId + ">");
+        shell.setPrompt("");
 
         //Are passed to filled by the consumer
         this.serverHostAndPort = new HashMap<>();

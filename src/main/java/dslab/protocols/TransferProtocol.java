@@ -16,12 +16,14 @@ import java.util.function.Function;
 public class TransferProtocol implements Runnable {
     private Shell shell;
     private final String componentId;
+    private final Config config;
     private Email email;
     Consumer<Email> sendCallback;
 
-    public TransferProtocol(String componentId, Socket socket, Consumer<Email> sendCallback) throws IOException {
+    public TransferProtocol(String componentId, Socket socket,Config config, Consumer<Email> sendCallback) throws IOException {
         this.shell = new Shell(socket.getInputStream(), new PrintStream(socket.getOutputStream()));
         this.componentId = componentId;
+        this.config = config;
         this.email = new Email();
         this.sendCallback = sendCallback;
         this.setupShellCallbacks();
@@ -29,8 +31,8 @@ public class TransferProtocol implements Runnable {
 
     @Override
     public void run() {
-        shell.setPrompt(componentId + "> ");
         shell.out().println("ok DMTP");
+        shell.setPrompt("");
         try {
             shell.run();
         } catch (UncheckedIOException ignored) {
@@ -47,7 +49,9 @@ public class TransferProtocol implements Runnable {
             }
         });
         shell.register("to", (input, context) -> {
-            this.emailSetter(input, this.email::setTo);
+            String domain  = config.getString("domain");
+            String result = this.email.setTo(String.join("", input.getArguments()), domain);
+            this.emailSetter(input, a -> result);
         });
         shell.register("from", (input, context) -> {
             this.emailSetter(input, this.email::setFrom);
@@ -75,7 +79,7 @@ public class TransferProtocol implements Runnable {
 
     public void emailSetter(Input input, Function<String, String> cb) {
         if (!email.undefined) {
-            String argumentString = String.join("", input.getArguments());
+            String argumentString = String.join(" ", input.getArguments());
             shell.out().println(cb.apply(argumentString));
         } else {
             shell.out().println("error must begin");
