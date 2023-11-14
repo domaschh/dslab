@@ -20,13 +20,13 @@ dslab/util/EmailResponseFactory.java
  dslab.util.EmailResponseFactory
 dslab/data/Email.java
  dslab.data.Email
+dslab/protocols/AuthProtocol.java
+ dslab.protocols.AuthProtocol
+dslab/mailbox/MailboxServer.java
+ dslab.mailbox.MailboxServer
 dslab/protocols/TransferProtocol.java
  dslab.protocols.TransferProtocol
 dslab/transfer/TransferServer.java
  dslab.transfer.TransferServer
 dslab/ComponentFactory.java
  dslab.ComponentFactory
-dslab/protocols/AuthProtocol.java
- dslab.protocols.AuthProtocol
-dslab/mailbox/MailboxServer.java
- dslab.mailbox.MailboxServer

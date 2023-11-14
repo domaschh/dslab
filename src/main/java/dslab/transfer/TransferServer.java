@@ -1,31 +1,28 @@
 package dslab.transfer;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.io.UncheckedIOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
 import at.ac.tuwien.dsg.orvell.Shell;
 import at.ac.tuwien.dsg.orvell.StopShellException;
-import at.ac.tuwien.dsg.orvell.annotation.Command;
 import dslab.ComponentFactory;
 import dslab.data.Email;
 import dslab.protocols.TransferProtocol;
 import dslab.util.Config;
 
 public class TransferServer implements ITransferServer, Runnable {
-    static int POOL_SIZE = Runtime.getRuntime().availableProcessors();
+    static int CORE_COUNT = Runtime.getRuntime().availableProcessors();
 
     private final String componentId;
     private final List<Socket> sockets;
     private final Shell shell;
     private final ServerSocket serverSocket;
-    private final Config config;
+    private final Config domains;
 
     /**
      * Creates a new server instance.
@@ -38,10 +35,10 @@ public class TransferServer implements ITransferServer, Runnable {
     public TransferServer(String componentId, Config config, InputStream in, PrintStream out) {
         this.componentId = componentId;
         this.sockets = new ArrayList<>();
-        this.config = config;
-        shell = new Shell(in, out);
-        shell.setPrompt(componentId + "> ");
-        shell.register("shutdown", (input, context) -> this.shutdown());
+        this.domains = new Config("domains");
+        this.shell = new Shell(in, out);
+        this.shell.setPrompt(componentId + "> ");
+        this.shell.register("shutdown", (input, context) -> this.shutdown());
 
         try {
             serverSocket = new ServerSocket(config.getInt("tcp.port"));
@@ -52,18 +49,88 @@ public class TransferServer implements ITransferServer, Runnable {
 
     @Override
     public void run() {
-        ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE);
-        executor.execute(shell);
+        ExecutorService receiveExecutor = Executors.newFixedThreadPool(CORE_COUNT / 2);
+        ExecutorService sendExecutor = Executors.newFixedThreadPool(CORE_COUNT / 2);
+        receiveExecutor.execute(shell);
         try {
             Socket socket = serverSocket.accept();
             while (socket.isConnected()) {
                 sockets.add(socket);
-                executor.execute(new TransferProtocol(componentId, socket, (Email completeMail) -> {
-                    shell.out().println("Sent email");
+                receiveExecutor.execute(new TransferProtocol(componentId, socket, (Email completeMail) -> {
+                    sendEmails(completeMail, sendExecutor);
                 }));
                 socket = serverSocket.accept();
             }
         } catch (IOException e) {
+            shell.out().println("Sending mail failed");
+        }
+    }
+
+    private void sendEmails(Email completeMail, ExecutorService sendExecutor) {
+        for (String rcvrMail : completeMail.getTo()) {
+            String domain = rcvrMail.split("@")[1];
+            if (this.domains.containsKey(domain)) {
+                String[] split = this.domains.getString(domain).split(":");
+                String address = split[0];
+                int port = Integer.parseInt(split[1]);
+                sendExecutor.execute(() -> {
+                    try {
+                        Socket s = new Socket(address, port);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream(), StandardCharsets.UTF_8));
+                        PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+                        this.sendEmail(completeMail, in, out);
+                        shell.out().println("Mail sent");
+                        s.close();
+                    } catch (IOException e) {
+                        shell.out().println("Sending mail failed");
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+        }
+    }
+
+    private void sendEmail(Email completeMail, BufferedReader in, PrintWriter out) throws IOException {
+        String s = in.readLine();
+        if(!s.equals("ok DMTP")) {
+            this.shell.out().println("Transfer failed");
+            throw new IOException("Transfer failed connecting expected: ok DMTP but got: " + s);
+        }
+        out.println("begin");
+        s = in.readLine();
+        if(!s.equals("mailbox-earth-planet> ok")) {
+            this.shell.out().println("Transfer failed" + s);
+            throw new IOException("Transfer failed connecting expected: ok but got: " + s);
+        }
+        out.println("from " + completeMail.getFrom());
+        s = in.readLine();
+        if(!s.equals("mailbox-earth-planet> ok")) {
+            this.shell.out().println("Transfer failed" + s);
+            throw new IOException("Transfer failed connecting expected: ok but got: " + s);
+        }
+        out.println("to " + String.join(",", completeMail.getTo()));
+        s = in.readLine();
+        if(!s.equals("mailbox-earth-planet> ok " + completeMail.getTo().size())) {
+            this.shell.out().println("Transfer failed" + s);
+            throw new IOException("Transfer failed connecting expected: ok but got: " + s);
+        }
+        out.println("subject " + completeMail.getSubject());
+        s = in.readLine();
+        if(!s.equals("mailbox-earth-planet> ok")) {
+            this.shell.out().println("Transfer failed" + s);
+            throw new IOException("Transfer failed connecting expected: ok but got: " + s);
+        }
+        out.println("data " + completeMail.getBody());
+        s = in.readLine();
+        if(!s.equals("mailbox-earth-planet> ok")) {
+            this.shell.out().println("Transfer failed" + s);
+            throw new IOException("Transfer failed connecting expected: ok but got: " + s);
+        }
+        out.println("send ");
+        s = in.readLine();
+        if(!s.equals("mailbox-earth-planet> ok")) {
+            this.shell.out().println("Transfer failed" + s);
+            throw new IOException("Transfer failed connecting expected: ok but got: " + s);
         }
     }
 

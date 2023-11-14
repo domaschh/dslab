@@ -14,7 +14,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class TransferProtocol implements Runnable {
-    private Config domainsConfig;
     private Shell shell;
     private final String componentId;
     private Email email;
@@ -22,7 +21,6 @@ public class TransferProtocol implements Runnable {
 
     public TransferProtocol(String componentId, Socket socket, Consumer<Email> sendCallback) throws IOException {
         this.shell = new Shell(socket.getInputStream(), new PrintStream(socket.getOutputStream()));
-        this.domainsConfig = new Config("domains");
         this.componentId = componentId;
         this.email = new Email();
         this.sendCallback = sendCallback;
