@@ -62,6 +62,15 @@ public class Email {
         return (this.from != null && this.body!=null && this.subject != null && this.to != null);
     }
 
+    @Override
+    public String toString() {
+        return
+                "from " + from + '\n' +
+                "to " + String.join(",", to) + '\n' +
+                "subject " + subject + '\n' +
+                "data " + body + '\n';
+    }
+
     private boolean isValidMail(String input) {
         return Pattern.matches(VALIDATION_STRING, input);
     }

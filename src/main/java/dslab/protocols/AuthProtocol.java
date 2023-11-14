@@ -80,15 +80,14 @@ public class AuthProtocol implements Runnable {
                 return;
             }
 
-            var args=  input.getArguments();
-            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(1)) >= 0) {
+            if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 0) {
                 int indexToFind = Integer.parseInt(input.getArguments().get(0));
                 int i = 0;
-                ConcurrentLinkedQueue<Email> usermails = this.database.get(loggedInUsername);
-                if (usermails == null) {
+                ConcurrentLinkedQueue<Email> savedMailsForUser = this.database.get(loggedInUsername);
+                if (savedMailsForUser == null) {
                     shell.out().println("error no mail found for given id");
                 } else {
-                    for (Email e : usermails) {
+                    for (Email e : savedMailsForUser) {
                         if (i++ == indexToFind) {
                             shell.out().println(e.toString());
                             return;
@@ -107,14 +106,14 @@ public class AuthProtocol implements Runnable {
             if (input.getArguments().size() == 1 && Integer.parseInt(input.getArguments().get(0)) >= 0) {
                 int indexToFind = Integer.parseInt(input.getArguments().get(0));
                 int i = 0;
-                ConcurrentLinkedQueue<Email> usermails = this.database.get(loggedInUsername);
-                if (usermails == null) {
+                ConcurrentLinkedQueue<Email> savedMailsForUser = this.database.get(loggedInUsername);
+                if (savedMailsForUser == null) {
                     shell.out().println("error no mail found for given id");
                     return;
                 } else {
-                    for (Email e : usermails) {
+                    for (Email e : savedMailsForUser) {
                         if (i++ == indexToFind) {
-                            usermails.remove(e);
+                            savedMailsForUser.remove(e);
                             shell.out().println("ok");
                             return;
                         }
