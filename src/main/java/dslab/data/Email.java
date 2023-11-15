@@ -78,7 +78,7 @@ public class Email {
 
     public String whatIsMissing() {
         StringBuilder sb = new StringBuilder();
-        sb.append("no");
+        sb.append("error no");
         if (this.to == null) {
             sb.append(" recipients");
         }

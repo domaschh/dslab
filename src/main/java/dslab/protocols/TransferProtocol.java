@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UncheckedIOException;
 import java.net.Socket;
+import java.util.MissingResourceException;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -49,7 +50,12 @@ public class TransferProtocol implements Runnable {
             }
         });
         shell.register("to", (input, context) -> {
-            String domain  = config.getString("domain");
+            String domain;
+            try {
+                domain = config.getString("domain");
+            } catch (MissingResourceException e) {
+                domain = null;
+            }
             String result = this.email.setTo(String.join("", input.getArguments()), domain);
             this.emailSetter(input, a -> result);
         });
