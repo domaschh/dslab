@@ -21,13 +21,14 @@ import dslab.protocols.TransferProtocol;
 import dslab.util.Config;
 
 public class MailboxServer implements IMailboxServer, Runnable {
-    static int POOL_SIZE = 2;
+    static int POOL_SIZE = 25;
     private final String componentId;
     private final List<Socket> sockets;
     private final Shell shell;
     private final Config config;
     private final ServerSocket transferSocket;
     private final ServerSocket authSocket;
+    private final ExecutorService executor;
     private final ConcurrentMap<String, ConcurrentLinkedQueue<Email>> database = new ConcurrentHashMap<>();
 
     /**
@@ -44,7 +45,8 @@ public class MailboxServer implements IMailboxServer, Runnable {
         this.config = config;
         this.shell = new Shell(in, out);
         this.shell.register("shutdown", (input, context) -> this.shutdown());
-        shell.setPrompt("");
+        this.shell.setPrompt("");
+        this.executor = Executors.newFixedThreadPool(POOL_SIZE);
         try {
             transferSocket = new ServerSocket(config.getInt("dmtp.tcp.port"));
             authSocket = new ServerSocket(config.getInt("dmap.tcp.port"));
@@ -55,7 +57,6 @@ public class MailboxServer implements IMailboxServer, Runnable {
 
     @Override
     public void run() {
-        ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE);
         new Thread(shell).start();
         this.startTransferListening(executor);
         this.startAuthListening(executor);

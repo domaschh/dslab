@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class TransferServer implements ITransferServer, Runnable {
-    static int CORE_COUNT = 4;
+    static int CORE_COUNT = 25;
 
     private final String componentId;
     private final List<Socket> sockets;
@@ -24,7 +24,8 @@ public class TransferServer implements ITransferServer, Runnable {
     private final ServerSocket serverSocket;
     private final Config domains;
     private final Config config;
-
+    ExecutorService receiveExecutor;
+    ExecutorService sendExecutor;
     /**
      * Creates a new server instance.
      *
@@ -40,7 +41,8 @@ public class TransferServer implements ITransferServer, Runnable {
         this.config = config;
         this.shell = new Shell(in, out);
         this.shell.register("shutdown", (input, context) -> this.shutdown());
-
+        this.receiveExecutor = Executors.newFixedThreadPool(25);
+        this.sendExecutor =Executors.newFixedThreadPool(25);
         try {
             serverSocket = new ServerSocket(config.getInt("tcp.port"));
         } catch (IOException e) {
@@ -50,8 +52,6 @@ public class TransferServer implements ITransferServer, Runnable {
 
     @Override
     public void run() {
-        ExecutorService receiveExecutor = Executors.newFixedThreadPool(CORE_COUNT / 2);
-        ExecutorService sendExecutor = Executors.newFixedThreadPool(CORE_COUNT / 2);
         receiveExecutor.execute(shell);
         try {
             Socket socket = serverSocket.accept();
