@@ -81,7 +81,7 @@ public class MailboxServer implements IMailboxServer, Runnable {
                 Socket socket = transferSocket.accept();
                 while (socket.isConnected()) {
                     sockets.add(socket);
-                    executor.execute(new TransferProtocol(componentId, socket, config,(Email receivedMail) -> {
+                    executor.execute(new TransferProtocol(componentId, socket, config,new ConcurrentHashMap<>(),(Email receivedMail) -> {
                         List<String> rcvdUsernames = receivedMail
                                 .getTo()
                                 .stream()

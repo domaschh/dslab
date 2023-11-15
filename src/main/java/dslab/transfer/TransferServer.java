@@ -70,7 +70,7 @@ public class TransferServer implements ITransferServer, Runnable {
     private void sendEmails(Email completeMail, ExecutorService sendExecutor) {
         for (String rcvrMail : completeMail.getTo()) {
             String domain = rcvrMail.split("@")[1];
-            if (this.domains.containsKey(domain)) {
+            if (this.domains.containsKey(domain)) {//DOMAIN FOUND
                 String[] split = this.domains.getString(domain).split(":");
                 String address = split[0];
                 int port = Integer.parseInt(split[1]);
@@ -88,7 +88,7 @@ public class TransferServer implements ITransferServer, Runnable {
                     }
                 });
                 this.sendMailToMonitoringServer(completeMail);
-            } else {
+            } else { //DOMAIN NOT FOUND
                 Email domainNotFoundMail = new Email("mailer@127.0.0.1", List.of(completeMail.getFrom()), "mail transfer failed", completeMail.toString().replace("\n", ", "));
                 sendExecutor.execute(() -> {
                     try {

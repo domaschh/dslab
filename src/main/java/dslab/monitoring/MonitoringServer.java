@@ -15,7 +15,7 @@ import dslab.util.MonitoringConsumer;
 
 public class MonitoringServer implements IMonitoringServer {
     private final Config config;
-    private final Shell shell;
+    private final Shell serverShell;
     private final Map<String, Integer> serverHostAndPort;
     private final Map<String, Integer> senderEmail;
     private DatagramSocket socket;
@@ -31,8 +31,8 @@ public class MonitoringServer implements IMonitoringServer {
      */
     public MonitoringServer(String componentId, Config config, InputStream in, PrintStream out) {
         this.config = config;
-        shell = new Shell(in, out);
-        shell.setPrompt("");
+        serverShell = new Shell(in, out);
+        serverShell.setPrompt("");
 
         //Are passed to filled by the consumer
         this.serverHostAndPort = new HashMap<>();
@@ -43,13 +43,13 @@ public class MonitoringServer implements IMonitoringServer {
     }
 
     private void setupShellCallbacks() {
-        shell.register("addresses", (input, context) -> {
+        serverShell.register("addresses", (input, context) -> {
             this.addresses();
         });
-        shell.register("servers", (input, context) -> {
+        serverShell.register("servers", (input, context) -> {
             this.servers();
         });
-        shell.register("shutdown", (input, context) -> {
+        serverShell.register("shutdown", (input, context) -> {
             this.shutdown();
         });
     }
@@ -58,22 +58,22 @@ public class MonitoringServer implements IMonitoringServer {
     public void run() {
         try {
             socket = new DatagramSocket(config.getInt("udp.port"));
-            consumer = new MonitoringConsumer(shell, socket, serverHostAndPort, senderEmail);
+            consumer = new MonitoringConsumer(serverShell, socket, serverHostAndPort, senderEmail);
             consumer.start();
         } catch (IOException e) {
             throw new RuntimeException("Cannot listen on UDP port.", e);
         }
 
-        shell.run();
+        serverShell.run();
     }
 
     @Override
     public void addresses() {
         if (senderEmail.isEmpty()) {
-            shell.out().println("no addresses records yet");
+            serverShell.out().println("no addresses records yet");
         } else {
             for (Map.Entry<String, Integer> entry : this.senderEmail.entrySet()) {
-                shell.out().println(entry.getKey() + " " + entry.getValue());
+                serverShell.out().println(entry.getKey() + " " + entry.getValue());
             }
         }
     }
@@ -81,10 +81,10 @@ public class MonitoringServer implements IMonitoringServer {
     @Override
     public void servers() {
         if (serverHostAndPort.isEmpty()) {
-            shell.out().println("no server records yet");
+            serverShell.out().println("no server records yet");
         } else {
             for (Map.Entry<String, Integer> entry : this.serverHostAndPort.entrySet()) {
-                shell.out().println(entry.getKey() + " " + entry.getValue());
+                serverShell.out().println(entry.getKey() + " " + entry.getValue());
             }
         }
     }

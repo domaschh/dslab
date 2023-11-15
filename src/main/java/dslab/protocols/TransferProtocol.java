@@ -10,9 +10,15 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UncheckedIOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.MissingResourceException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class TransferProtocol implements Runnable {
     private Shell shell;
@@ -20,17 +26,44 @@ public class TransferProtocol implements Runnable {
     private final Config config;
     private Email email;
     Consumer<Email> sendCallback;
+    ConcurrentHashMap<String, ConcurrentLinkedQueue<Email>> optionaldatabase;
+    private String domain;
 
     public TransferProtocol(String componentId, Socket socket,Config config, Consumer<Email> sendCallback) throws IOException {
         this.shell = new Shell(socket.getInputStream(), new PrintStream(socket.getOutputStream()));
         this.componentId = componentId;
         this.config = config;
         this.email = new Email();
+        this.optionaldatabase = null;
         this.sendCallback = sendCallback;
         this.setupShellCallbacks();
     }
 
-    @Override
+    public TransferProtocol(String componentId, Socket socket, Config config, ConcurrentHashMap<String, ConcurrentLinkedQueue<Email>> optionaldatabase, Consumer<Email> sendCallback) throws IOException {
+        this.shell = new Shell(socket.getInputStream(), new PrintStream(socket.getOutputStream()));
+        this.componentId = componentId;
+        this.optionaldatabase = optionaldatabase;
+        this.config = config;
+        this.email = new Email();
+        this.sendCallback = sendCallback;
+        this.setupShellCallbacks();
+
+        try {
+            domain = config.getString("domain");
+        } catch (MissingResourceException e) {
+            domain = null;
+        }
+
+        try {
+            Config users = new Config(config.getString("users.config"));
+            users.listKeys().forEach(user -> optionaldatabase.put(user, new ConcurrentLinkedQueue<>()));
+        } catch (MissingResourceException e ) {
+            shell.out().println("Error loading user.config");
+        }
+    }
+
+
+        @Override
     public void run() {
         shell.out().println("ok DMTP");
         shell.setPrompt("");
@@ -50,13 +83,11 @@ public class TransferProtocol implements Runnable {
             }
         });
         shell.register("to", (input, context) -> {
-            String domain;
-            try {
-                domain = config.getString("domain");
-            } catch (MissingResourceException e) {
-                domain = null;
+            String[] recipients = String.join("", input.getArguments()).split(",");
+            if (optionaldatabase != null) {
+                recipients = Arrays.stream(recipients).filter(r -> optionaldatabase.containsKey(r.split("@")[0])).toArray(String[]::new);
             }
-            String result = this.email.setTo(String.join("", input.getArguments()), domain);
+            String result = this.email.setTo(recipients, domain);
             this.emailSetter(input, a -> result);
         });
         shell.register("from", (input, context) -> {

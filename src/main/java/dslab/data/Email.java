@@ -39,8 +39,7 @@ public class Email {
         return to;
     }
 
-    public String setTo(String to, String domain) {
-        String[] recipients = to.split(",");
+    public String setTo(String[] recipients, String domain) {
         recipients = domain != null ? Arrays.stream(recipients).filter(r -> r.contains(domain)).toArray(String[]::new): recipients;
         if (recipients.length > 0 && Arrays.stream(recipients).allMatch(this::isValidMail)) {
             this.to = Arrays.stream(recipients).collect(Collectors.toList());
