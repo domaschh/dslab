@@ -13,6 +13,15 @@ public class Email {
     private String body;
     public boolean undefined = true;
 
+    public Email(String from, List<String> to, String subject, String body) {
+        this.from = from;
+        this.to = to;
+        this.subject = subject;
+        this.body = body;
+    }
+
+    public Email() {}
+
     public String getFrom() {
         return from;
     }

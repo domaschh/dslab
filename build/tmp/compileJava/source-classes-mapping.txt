@@ -1,24 +1,24 @@
-dslab/monitoring/IMonitoringServer.java
- dslab.monitoring.IMonitoringServer
-dslab/mailbox/IMailboxServer.java
- dslab.mailbox.IMailboxServer
-dslab/util/MonitoringConsumer.java
- dslab.util.MonitoringConsumer
-dslab/protocols/TransferProtocol.java
- dslab.protocols.TransferProtocol
+dslab/data/Email.java
+ dslab.data.Email
+dslab/protocols/AuthProtocol.java
+ dslab.protocols.AuthProtocol
+dslab/transfer/TransferServer.java
+ dslab.transfer.TransferServer
+dslab/ComponentFactory.java
+ dslab.ComponentFactory
 dslab/util/Config.java
  dslab.util.Config
 dslab/monitoring/MonitoringServer.java
  dslab.monitoring.MonitoringServer
 dslab/transfer/ITransferServer.java
  dslab.transfer.ITransferServer
-dslab/data/Email.java
- dslab.data.Email
-dslab/protocols/AuthProtocol.java
- dslab.protocols.AuthProtocol
+dslab/mailbox/IMailboxServer.java
+ dslab.mailbox.IMailboxServer
+dslab/util/MonitoringConsumer.java
+ dslab.util.MonitoringConsumer
+dslab/protocols/TransferProtocol.java
+ dslab.protocols.TransferProtocol
 dslab/mailbox/MailboxServer.java
  dslab.mailbox.MailboxServer
-dslab/transfer/TransferServer.java
- dslab.transfer.TransferServer
-dslab/ComponentFactory.java
- dslab.ComponentFactory
+dslab/monitoring/IMonitoringServer.java
+ dslab.monitoring.IMonitoringServer

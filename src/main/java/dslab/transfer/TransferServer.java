@@ -1,18 +1,19 @@
 package dslab.transfer;
 
-import java.io.*;
-import java.net.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.*;
-
 import at.ac.tuwien.dsg.orvell.Shell;
 import at.ac.tuwien.dsg.orvell.StopShellException;
 import dslab.ComponentFactory;
 import dslab.data.Email;
 import dslab.protocols.TransferProtocol;
 import dslab.util.Config;
+
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class TransferServer implements ITransferServer, Runnable {
     static int CORE_COUNT = Runtime.getRuntime().availableProcessors();
@@ -87,6 +88,22 @@ public class TransferServer implements ITransferServer, Runnable {
                     }
                 });
                 this.sendMailToMonitoringServer(completeMail);
+            } else {
+                Email domainNotFoundMail = new Email("mailer@127.0.0.1", List.of(completeMail.getFrom()), "mail transfer failed", completeMail.toString().replace("\n", ", "));
+                sendExecutor.execute(() -> {
+                    try {
+                        Socket s = new Socket("127.0.0.1", config.getInt("tcp.port"));
+                        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream(), StandardCharsets.UTF_8));
+                        PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+                        this.sendEmailToMailboxServer(domainNotFoundMail, in, out);
+                        shell.out().println("Mail sent");
+                        s.close();
+                    } catch (IOException e) {
+                        shell.out().println("Sending mail failed");
+                        throw new RuntimeException(e);
+                    }
+                });
+                this.sendMailToMonitoringServer(domainNotFoundMail);
             }
         }
     }

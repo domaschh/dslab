@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dslab.mailbox.MailboxServerProtocolTest" tests="9" skipped="0" failures="2" errors="0" timestamp="2023-11-15T00:45:48" hostname="Thomass-MacBook-Pro-2.local" time="47.208">
+  <properties/>
+  <testcase name="mbx_02_dmtp_ignoresForeignAddresses" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.045"/>
+  <testcase name="mbx_08_show_showsEmailCorrectly" classname="dslab.mailbox.MailboxServerProtocolTest" time="5.051"/>
+  <testcase name="mbx_01_dmtp_simple" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.014"/>
+  <testcase name="mbx_07_list_showsOnlyUsersEmails" classname="dslab.mailbox.MailboxServerProtocolTest" time="5.029"/>
+  <testcase name="mbx_03_dmtp_rejectsUnknownAddresses" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.016">
+    <failure message="java.lang.AssertionError: &#10;Expected: a string containing &quot;error&quot;&#10;     but: was &quot;ok 1&quot;" type="java.lang.AssertionError">java.lang.AssertionError: 
+Expected: a string containing &quot;error&quot;
+     but: was &quot;ok 1&quot;
+	at org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)
+	at org.junit.Assert.assertThat(Assert.java:956)
+	at org.junit.Assert.assertThat(Assert.java:923)
+	at dslab.JunitSocketClient.assertThat(JunitSocketClient.java:122)
+	at dslab.JunitSocketClient.sendAndVerify(JunitSocketClient.java:103)
+	at dslab.mailbox.MailboxServerProtocolTest.mbx_03_dmtp_rejectsUnknownAddresses(MailboxServerProtocolTest.java:89)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:292)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+</failure>
+  </testcase>
+  <testcase name="mbx_06_list_showsAcceptedMailCorrectly" classname="dslab.mailbox.MailboxServerProtocolTest" time="4.02"/>
+  <testcase name="mbx_05_login_Logout" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.012"/>
+  <testcase name="mbx_09_delete_removesMail" classname="dslab.mailbox.MailboxServerProtocolTest" time="18.012">
+    <failure message="org.junit.runners.model.TestTimedOutException: test timed out after 15000 milliseconds" type="org.junit.runners.model.TestTimedOutException">org.junit.runners.model.TestTimedOutException: test timed out after 15000 milliseconds
+	at java.base@11.0.18/jdk.internal.misc.Unsafe.park(Native Method)
+	at java.base@11.0.18/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:234)
+	at java.base@11.0.18/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2123)
+	at java.base@11.0.18/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:458)
+	at app//dslab.StreamListener.poll(StreamListener.java:29)
+	at app//dslab.JunitSocketClient.read(JunitSocketClient.java:82)
+	at app//dslab.JunitSocketClient.sendAndRead(JunitSocketClient.java:108)
+	at app//dslab.JunitSocketClient.sendAndVerify(JunitSocketClient.java:103)
+	at app//dslab.mailbox.MailboxServerProtocolTest.mbx_09_delete_removesMail(MailboxServerProtocolTest.java:290)
+	at java.base@11.0.18/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@11.0.18/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base@11.0.18/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@11.0.18/java.lang.reflect.Method.invoke(Method.java:566)
+	at app//org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at app//org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at app//org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at app//org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+	at app//org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:292)
+	at java.base@11.0.18/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base@11.0.18/java.lang.Thread.run(Thread.java:829)
+</failure>
+  </testcase>
+  <testcase name="mbx_04_login_withIllegalCredentials" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.009"/>
+  <system-out><![CDATA[Test Run Finished: MailboxServerProtocolTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mbx_09_delete_removesMail                                                        0,50            0,00           
+mbx_06_list_showsAcceptedMailCorrectly                                           0,50            0,50           
+mbx_08_show_showsEmailCorrectly                                                  1,00            1,00           
+mbx_05_login_Logout                                                              0,50            0,50           
+mbx_02_dmtp_ignoresForeignAddresses                                              0,50            0,50           
+mbx_04_login_withIllegalCredentials                                              0,50            0,50           
+mbx_01_dmtp_simple                                                               0,50            0,50           
+mbx_03_dmtp_rejectsUnknownAddresses                                              0,50            0,00           
+mbx_07_list_showsOnlyUsersEmails                                                 1,00            1,00           
+Total points possible: 5.5
+Total points earned: 4.5
+
+]]></system-out>
+  <system-err><![CDATA[Nov 15, 2023 1:45:48 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 1:45:51 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 1:45:56 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 1:45:59 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 1:46:04 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 1:46:07 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 1:46:11 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 1:46:14 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 1:46:32 AM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+]]></system-err>
+</testsuite>
