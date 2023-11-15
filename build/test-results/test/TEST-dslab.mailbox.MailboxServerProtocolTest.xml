@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dslab.mailbox.MailboxServerProtocolTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-15T13:49:43" hostname="Thomass-MacBook-Pro-2.local" time="4.059">
+<testsuite name="dslab.mailbox.MailboxServerProtocolTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-11-15T14:06:01" hostname="Thomass-MacBook-Pro-2.local" time="33.226">
   <properties/>
-  <testcase name="mbx_09_delete_removesMail" classname="dslab.mailbox.MailboxServerProtocolTest" time="4.059"/>
+  <testcase name="mbx_02_dmtp_ignoresForeignAddresses" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.049"/>
+  <testcase name="mbx_08_show_showsEmailCorrectly" classname="dslab.mailbox.MailboxServerProtocolTest" time="5.045"/>
+  <testcase name="mbx_01_dmtp_simple" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.014"/>
+  <testcase name="mbx_07_list_showsOnlyUsersEmails" classname="dslab.mailbox.MailboxServerProtocolTest" time="5.022"/>
+  <testcase name="mbx_03_dmtp_rejectsUnknownAddresses" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.01"/>
+  <testcase name="mbx_06_list_showsAcceptedMailCorrectly" classname="dslab.mailbox.MailboxServerProtocolTest" time="4.018"/>
+  <testcase name="mbx_05_login_Logout" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.014"/>
+  <testcase name="mbx_09_delete_removesMail" classname="dslab.mailbox.MailboxServerProtocolTest" time="4.013"/>
+  <testcase name="mbx_04_login_withIllegalCredentials" classname="dslab.mailbox.MailboxServerProtocolTest" time="3.038"/>
   <system-out><![CDATA[Test Run Finished: MailboxServerProtocolTest
 Test Name                                                                        Max Points      Earned Points  
 -------------------------------------------------------------------              ----------      ------------   
 mbx_09_delete_removesMail                                                        0,50            0,50           
-Total points possible: 0.5
-Total points earned: 0.5
+mbx_06_list_showsAcceptedMailCorrectly                                           0,50            0,50           
+mbx_08_show_showsEmailCorrectly                                                  1,00            1,00           
+mbx_05_login_Logout                                                              0,50            0,50           
+mbx_02_dmtp_ignoresForeignAddresses                                              0,50            0,50           
+mbx_04_login_withIllegalCredentials                                              0,50            0,50           
+mbx_01_dmtp_simple                                                               0,50            0,50           
+mbx_03_dmtp_rejectsUnknownAddresses                                              0,50            0,50           
+mbx_07_list_showsOnlyUsersEmails                                                 1,00            1,00           
+Total points possible: 5.5
+Total points earned: 5.5
 
 ]]></system-out>
-  <system-err><![CDATA[Nov 15, 2023 2:49:43 PM dslab.mailbox.MailboxServerProtocolTest setUp
+  <system-err><![CDATA[Nov 15, 2023 3:06:01 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 3:06:04 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 3:06:09 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 3:06:12 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 3:06:17 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 3:06:20 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 3:06:24 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 3:06:27 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 3:06:31 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
 ]]></system-err>
 </testsuite>
