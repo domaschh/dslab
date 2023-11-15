@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">9</div>
+<div class="counter">18</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">33.223s</div>
+<div class="counter">1m6.34s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,47 +82,92 @@
 </thead>
 <tr>
 <td class="success">mbx_01_dmtp_simple</td>
-<td class="success">3.014s</td>
+<td class="success">3.012s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mbx_01_dmtp_simple</td>
+<td class="success">3.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">mbx_02_dmtp_ignoresForeignAddresses</td>
-<td class="success">3.049s</td>
+<td class="success">3.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">mbx_03_dmtp_rejectsUnknownAddresses</td>
+<td class="success">mbx_02_dmtp_ignoresForeignAddresses</td>
 <td class="success">3.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">mbx_03_dmtp_rejectsUnknownAddresses</td>
+<td class="success">3.017s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mbx_03_dmtp_rejectsUnknownAddresses</td>
+<td class="success">3.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">mbx_04_login_withIllegalCredentials</td>
-<td class="success">3.038s</td>
+<td class="success">3.012s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mbx_04_login_withIllegalCredentials</td>
+<td class="success">3.021s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">mbx_05_login_Logout</td>
-<td class="success">3.014s</td>
+<td class="success">3.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mbx_05_login_Logout</td>
+<td class="success">3.013s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">mbx_06_list_showsAcceptedMailCorrectly</td>
-<td class="success">4.018s</td>
+<td class="success">4.021s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mbx_06_list_showsAcceptedMailCorrectly</td>
+<td class="success">4.019s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">mbx_07_list_showsOnlyUsersEmails</td>
-<td class="success">5.022s</td>
+<td class="success">5.027s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mbx_07_list_showsOnlyUsersEmails</td>
+<td class="success">5.028s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">mbx_08_show_showsEmailCorrectly</td>
-<td class="success">5.045s</td>
+<td class="success">5.021s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mbx_08_show_showsEmailCorrectly</td>
+<td class="success">5.047s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">mbx_09_delete_removesMail</td>
-<td class="success">4.013s</td>
+<td class="success">4.022s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">mbx_09_delete_removesMail</td>
+<td class="success">4.022s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -151,23 +196,41 @@ Total points earned: 5.5
 <div id="tab2" class="tab">
 <h2>Standard error</h2>
 <span class="code">
-<pre>Nov 15, 2023 3:06:01 PM dslab.mailbox.MailboxServerProtocolTest setUp
+<pre>Nov 15, 2023 8:44:38 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
-Nov 15, 2023 3:06:04 PM dslab.mailbox.MailboxServerProtocolTest setUp
+Nov 15, 2023 8:44:41 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
-Nov 15, 2023 3:06:09 PM dslab.mailbox.MailboxServerProtocolTest setUp
+Nov 15, 2023 8:44:46 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
-Nov 15, 2023 3:06:12 PM dslab.mailbox.MailboxServerProtocolTest setUp
+Nov 15, 2023 8:44:49 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
-Nov 15, 2023 3:06:17 PM dslab.mailbox.MailboxServerProtocolTest setUp
+Nov 15, 2023 8:44:54 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
-Nov 15, 2023 3:06:20 PM dslab.mailbox.MailboxServerProtocolTest setUp
+Nov 15, 2023 8:44:57 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
-Nov 15, 2023 3:06:24 PM dslab.mailbox.MailboxServerProtocolTest setUp
+Nov 15, 2023 8:45:01 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
-Nov 15, 2023 3:06:27 PM dslab.mailbox.MailboxServerProtocolTest setUp
+Nov 15, 2023 8:45:04 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
-Nov 15, 2023 3:06:31 PM dslab.mailbox.MailboxServerProtocolTest setUp
+Nov 15, 2023 8:45:08 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:18 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:21 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:26 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:29 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:34 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:37 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:41 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:44 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+Nov 15, 2023 8:46:48 PM dslab.mailbox.MailboxServerProtocolTest setUp
 INFO: Waiting for server sockets to appear
 </pre>
 </span>
@@ -180,7 +243,7 @@ INFO: Waiting for server sockets to appear
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.6.1</a> at 15 Nov 2023, 15:06:34</p>
+<a href="http://www.gradle.org">Gradle 6.6.1</a> at 15 Nov 2023, 20:48:08</p>
 </div>
 </div>
 </body>

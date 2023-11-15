@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dslab.scenario.lab1.TransferMailboxScenarioTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-11-15T19:45:34" hostname="Thomass-MacBook-Pro-2.local" time="120.254">
+  <properties/>
+  <testcase name="scen_01_simpleEmailSending" classname="dslab.scenario.lab1.TransferMailboxScenarioTest" time="10.102"/>
+  <testcase name="scen_02_multipleRecipients" classname="dslab.scenario.lab1.TransferMailboxScenarioTest" time="10.077"/>
+  <testcase name="scen_03_failureMessage" classname="dslab.scenario.lab1.TransferMailboxScenarioTest" time="10.062"/>
+  <testcase name="scen_01_simpleEmailSending" classname="dslab.scenario.lab1.TransferMailboxScenarioTest" time="10.077"/>
+  <testcase name="scen_02_multipleRecipients" classname="dslab.scenario.lab1.TransferMailboxScenarioTest" time="10.069"/>
+  <testcase name="scen_03_failureMessage" classname="dslab.scenario.lab1.TransferMailboxScenarioTest" time="10.064"/>
+  <system-out><![CDATA[Test Run Finished: TransferMailboxScenarioTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+scen_03_failureMessage                                                           2,00            2,00           
+scen_01_simpleEmailSending                                                       1,50            1,50           
+scen_02_multipleRecipients                                                       1,50            1,50           
+Total points possible: 5.0
+Total points earned: 5.0
+
+]]></system-out>
+  <system-err><![CDATA[Nov 15, 2023 8:45:34 PM dslab.ComponentRule before
+INFO: Starting up component transfer-1
+Nov 15, 2023 8:45:34 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@27d980e7
+Nov 15, 2023 8:45:34 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-1
+Nov 15, 2023 8:45:34 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-univer-ze
+Nov 15, 2023 8:45:34 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@78e9daae
+Nov 15, 2023 8:45:34 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:45:34 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:45:35 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-earth-planet
+Nov 15, 2023 8:45:35 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@762e3bc3
+Nov 15, 2023 8:45:35 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:45:35 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:45:35 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_01_simpleEmailSending
+INFO: Sending message
+Nov 15, 2023 8:45:36 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_01_simpleEmailSending
+INFO: Checking mailbox server earth.planet
+Nov 15, 2023 8:45:37 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_01_simpleEmailSending
+INFO: Checking mailbox server which did not receive a message
+Nov 15, 2023 8:45:44 PM dslab.ComponentRule before
+INFO: Starting up component transfer-1
+Nov 15, 2023 8:45:44 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@10a9c450
+Nov 15, 2023 8:45:44 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-1
+Nov 15, 2023 8:45:44 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-univer-ze
+Nov 15, 2023 8:45:44 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@405f188a
+Nov 15, 2023 8:45:44 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:45:44 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:45:45 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-earth-planet
+Nov 15, 2023 8:45:45 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@4e98fef1
+Nov 15, 2023 8:45:45 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:45:45 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:45:45 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_02_multipleRecipients
+INFO: Sending message
+Nov 15, 2023 8:45:46 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_02_multipleRecipients
+INFO: Checking mailbox server earth.planet
+Nov 15, 2023 8:45:47 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_02_multipleRecipients
+INFO: Checking mailbox server earth.planet
+Nov 15, 2023 8:45:54 PM dslab.ComponentRule before
+INFO: Starting up component transfer-1
+Nov 15, 2023 8:45:54 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@1b0689d5
+Nov 15, 2023 8:45:54 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-1
+Nov 15, 2023 8:45:54 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-univer-ze
+Nov 15, 2023 8:45:54 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@15783fb7
+Nov 15, 2023 8:45:54 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:45:54 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:45:55 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-earth-planet
+Nov 15, 2023 8:45:55 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@1bbfc368
+Nov 15, 2023 8:45:55 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:45:55 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:45:55 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_03_failureMessage
+INFO: Sending message to non-existing email address
+Nov 15, 2023 8:45:57 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_03_failureMessage
+INFO: Checking mailbox server for error mail
+Nov 15, 2023 8:47:04 PM dslab.ComponentRule before
+INFO: Starting up component transfer-1
+Nov 15, 2023 8:47:04 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@5a3f3519
+Nov 15, 2023 8:47:04 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-1
+Nov 15, 2023 8:47:04 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-univer-ze
+Nov 15, 2023 8:47:04 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@75986426
+Nov 15, 2023 8:47:04 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:47:04 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:47:05 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-earth-planet
+Nov 15, 2023 8:47:05 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@7b5f84e5
+Nov 15, 2023 8:47:05 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:47:05 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:47:05 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_01_simpleEmailSending
+INFO: Sending message
+Nov 15, 2023 8:47:06 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_01_simpleEmailSending
+INFO: Checking mailbox server earth.planet
+Nov 15, 2023 8:47:07 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_01_simpleEmailSending
+INFO: Checking mailbox server which did not receive a message
+Nov 15, 2023 8:47:14 PM dslab.ComponentRule before
+INFO: Starting up component transfer-1
+Nov 15, 2023 8:47:14 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@522679f
+Nov 15, 2023 8:47:14 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-1
+Nov 15, 2023 8:47:14 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-univer-ze
+Nov 15, 2023 8:47:14 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@626ac85d
+Nov 15, 2023 8:47:14 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:47:14 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:47:15 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-earth-planet
+Nov 15, 2023 8:47:15 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@6cad2a60
+Nov 15, 2023 8:47:15 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:47:15 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:47:15 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_02_multipleRecipients
+INFO: Sending message
+Nov 15, 2023 8:47:16 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_02_multipleRecipients
+INFO: Checking mailbox server earth.planet
+Nov 15, 2023 8:47:17 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_02_multipleRecipients
+INFO: Checking mailbox server earth.planet
+Nov 15, 2023 8:47:24 PM dslab.ComponentRule before
+INFO: Starting up component transfer-1
+Nov 15, 2023 8:47:24 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@5ff419d7
+Nov 15, 2023 8:47:24 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-1
+Nov 15, 2023 8:47:24 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-univer-ze
+Nov 15, 2023 8:47:24 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@4f1caa2
+Nov 15, 2023 8:47:24 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:47:24 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-univer-ze
+Nov 15, 2023 8:47:25 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-earth-planet
+Nov 15, 2023 8:47:25 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@a36244c
+Nov 15, 2023 8:47:25 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:47:25 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:47:25 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_03_failureMessage
+INFO: Sending message to non-existing email address
+Nov 15, 2023 8:47:27 PM dslab.scenario.lab1.TransferMailboxScenarioTest scen_03_failureMessage
+INFO: Checking mailbox server for error mail
+]]></system-err>
+</testsuite>

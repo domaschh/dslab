@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dslab.monitoring.MonitoringServerProtocolTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-11-15T19:45:17" hostname="Thomass-MacBook-Pro-2.local" time="170.921">
+  <properties/>
+  <testcase name="mon_02_servers_returnsCorrectStatistics" classname="dslab.monitoring.MonitoringServerProtocolTest" time="8.272"/>
+  <testcase name="mon_01_addresses_returnsCorrectStatistics" classname="dslab.monitoring.MonitoringServerProtocolTest" time="8.276"/>
+  <testcase name="mon_02_servers_returnsCorrectStatistics" classname="dslab.monitoring.MonitoringServerProtocolTest" time="8.266"/>
+  <testcase name="mon_01_addresses_returnsCorrectStatistics" classname="dslab.monitoring.MonitoringServerProtocolTest" time="8.272"/>
+  <system-out><![CDATA[Socket closed
+Socket closed
+Socket closed
+Socket closed
+Socket closed
+Socket closed
+Socket closed
+Socket closed
+Test Run Finished: MonitoringServerProtocolTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mon_02_servers_returnsCorrectStatistics                                          0,75            0,75           
+mon_01_addresses_returnsCorrectStatistics                                        0,75            0,75           
+Total points possible: 1.5
+Total points earned: 1.5
+
+]]></system-out>
+  <system-err><![CDATA[Nov 15, 2023 8:45:20 PM dslab.monitoring.MonitoringServerProtocolTest mon_02_servers_returnsCorrectStatistics
+INFO: Sending three monitoring packets to monitoring socket
+Nov 15, 2023 8:45:28 PM dslab.monitoring.MonitoringServerProtocolTest mon_01_addresses_returnsCorrectStatistics
+INFO: Sending three monitoring packets to monitoring socket
+Nov 15, 2023 8:47:54 PM dslab.monitoring.MonitoringServerProtocolTest mon_02_servers_returnsCorrectStatistics
+INFO: Sending three monitoring packets to monitoring socket
+Nov 15, 2023 8:48:03 PM dslab.monitoring.MonitoringServerProtocolTest mon_01_addresses_returnsCorrectStatistics
+INFO: Sending three monitoring packets to monitoring socket
+]]></system-err>
+</testsuite>

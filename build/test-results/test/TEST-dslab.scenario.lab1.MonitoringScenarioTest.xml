@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dslab.scenario.lab1.MonitoringScenarioTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-15T19:46:04" hostname="Thomass-MacBook-Pro-2.local" time="101.574">
+  <properties/>
+  <testcase name="scen_04_transferServerSendsMonitoringData" classname="dslab.scenario.lab1.MonitoringScenarioTest" time="11.567"/>
+  <testcase name="scen_04_transferServerSendsMonitoringData" classname="dslab.scenario.lab1.MonitoringScenarioTest" time="11.563"/>
+  <system-out><![CDATA[Socket closed
+Socket closed
+Test Run Finished: MonitoringScenarioTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+scen_04_transferServerSendsMonitoringData                                        2,00            2,00           
+Total points possible: 2.0
+Total points earned: 2.0
+
+Test Run Finished: TransferMailboxScenarioTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+scen_03_failureMessage                                                           2,00            2,00           
+scen_01_simpleEmailSending                                                       1,50            1,50           
+scen_02_multipleRecipients                                                       1,50            1,50           
+Total points possible: 5.0
+Total points earned: 5.0
+
+Test Run Finished: MonitoringServerProtocolTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mon_02_servers_returnsCorrectStatistics                                          0,75            0,75           
+mon_01_addresses_returnsCorrectStatistics                                        0,75            0,75           
+Total points possible: 1.5
+Total points earned: 1.5
+
+Test Run Finished: MonitoringServerTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mon_00_runAndShutdownMonitoringServer_createsAndStopsUdpSocketCorrectly          0,50            0,50           
+Total points possible: 0.5
+Total points earned: 0.5
+
+Test Run Finished: MailboxServerProtocolTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mbx_09_delete_removesMail                                                        0,50            0,50           
+mbx_06_list_showsAcceptedMailCorrectly                                           0,50            0,50           
+mbx_08_show_showsEmailCorrectly                                                  1,00            1,00           
+mbx_05_login_Logout                                                              0,50            0,50           
+mbx_02_dmtp_ignoresForeignAddresses                                              0,50            0,50           
+mbx_04_login_withIllegalCredentials                                              0,50            0,50           
+mbx_01_dmtp_simple                                                               0,50            0,50           
+mbx_03_dmtp_rejectsUnknownAddresses                                              0,50            0,50           
+mbx_07_list_showsOnlyUsersEmails                                                 1,00            1,00           
+Total points possible: 5.5
+Total points earned: 5.5
+
+Test Run Finished: MailboxServerTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly             0,50            0,50           
+Total points possible: 0.5
+Total points earned: 0.5
+
+Test Run Finished: TransferServerProtocolTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+tfs_03_sendWithoutRecipient_returnsErrorOnSend                                   0,50            0,50           
+tfs_01_dmtp_simple                                                               1,50            1,50           
+tfs_02_sendWithoutData_returnsErrorOnSend                                        0,50            0,50           
+Total points possible: 2.5
+Total points earned: 2.5
+
+Test Run Finished: TransferServerTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly            0,50            0,50           
+Total points possible: 0.5
+Total points earned: 0.5
+
+Socket closed
+Socket closed
+Test Run Finished: MonitoringScenarioTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+scen_04_transferServerSendsMonitoringData                                        2,00            2,00           
+Total points possible: 2.0
+Total points earned: 2.0
+
+]]></system-out>
+  <system-err><![CDATA[Nov 15, 2023 8:46:04 PM dslab.ComponentRule before
+INFO: Starting up component transfer-2
+Nov 15, 2023 8:46:04 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@88cfdea
+Nov 15, 2023 8:46:04 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-2
+Nov 15, 2023 8:46:04 PM dslab.ComponentRule before
+INFO: Starting up component transfer-1
+Nov 15, 2023 8:46:04 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@63b98aa4
+Nov 15, 2023 8:46:04 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-1
+Nov 15, 2023 8:46:05 PM dslab.ComponentRule before
+INFO: Starting up component monitoring
+Nov 15, 2023 8:46:05 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.monitoring.MonitoringServer@72c31a76
+Nov 15, 2023 8:46:06 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-earth-planet
+Nov 15, 2023 8:46:06 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@7c04fa5e
+Nov 15, 2023 8:46:06 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:46:06 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:47:34 PM dslab.ComponentRule before
+INFO: Starting up component transfer-2
+Nov 15, 2023 8:47:34 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@116367fc
+Nov 15, 2023 8:47:34 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-2
+Nov 15, 2023 8:47:34 PM dslab.ComponentRule before
+INFO: Starting up component transfer-1
+Nov 15, 2023 8:47:34 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.transfer.TransferServer@32d71f34
+Nov 15, 2023 8:47:34 PM dslab.rules.TransferServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for transfer-1
+Nov 15, 2023 8:47:35 PM dslab.ComponentRule before
+INFO: Starting up component monitoring
+Nov 15, 2023 8:47:35 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.monitoring.MonitoringServer@4a82bea7
+Nov 15, 2023 8:47:36 PM dslab.ComponentRule before
+INFO: Starting up component mailbox-earth-planet
+Nov 15, 2023 8:47:36 PM dslab.ComponentRule before
+INFO: Starting thread with component dslab.mailbox.MailboxServer@44454987
+Nov 15, 2023 8:47:36 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMAP server socket to appear for mailbox-earth-planet
+Nov 15, 2023 8:47:36 PM dslab.rules.MailboxServerRule waitForStartup
+INFO: Waiting for DMTP server socket to appear for mailbox-earth-planet
+]]></system-err>
+</testsuite>

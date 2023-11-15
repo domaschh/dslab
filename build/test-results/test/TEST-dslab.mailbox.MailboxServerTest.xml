@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dslab.mailbox.MailboxServerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-15T19:44:35" hostname="Thomass-MacBook-Pro-2.local" time="103.628">
+  <properties/>
+  <testcase name="mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly" classname="dslab.mailbox.MailboxServerTest" time="3.024"/>
+  <testcase name="mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly" classname="dslab.mailbox.MailboxServerTest" time="3.007"/>
+  <system-out><![CDATA[Test Run Finished: MailboxServerTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly             0,50            0,50           
+Total points possible: 0.5
+Total points earned: 0.5
+
+]]></system-out>
+  <system-err><![CDATA[Nov 15, 2023 8:44:35 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Starting thread with component dslab.mailbox.MailboxServer@6b3c1da7
+Nov 15, 2023 8:44:35 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for DMTP socket to open on port 12582
+Nov 15, 2023 8:44:35 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for DMAP socket to open on port 12583
+Nov 15, 2023 8:44:35 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Shutting down component dslab.mailbox.MailboxServer@6b3c1da7
+Nov 15, 2023 8:44:38 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for thread to stop for component dslab.mailbox.MailboxServer@6b3c1da7
+Nov 15, 2023 8:46:15 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Starting thread with component dslab.mailbox.MailboxServer@13a62472
+Nov 15, 2023 8:46:15 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for DMTP socket to open on port 12582
+Nov 15, 2023 8:46:15 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for DMAP socket to open on port 12583
+Nov 15, 2023 8:46:15 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Shutting down component dslab.mailbox.MailboxServer@13a62472
+Nov 15, 2023 8:46:18 PM dslab.monitoring.MonitoringServerTest mbx_00_runAndShutdownMailboxServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for thread to stop for component dslab.mailbox.MailboxServer@13a62472
+]]></system-err>
+</testsuite>

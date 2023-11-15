@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dslab.transfer.TransferServerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-15T19:44:23" hostname="Thomass-MacBook-Pro-2.local" time="160.916">
+  <properties/>
+  <testcase name="tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly" classname="dslab.transfer.TransferServerTest" time="3.042"/>
+  <testcase name="tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly" classname="dslab.transfer.TransferServerTest" time="3.01"/>
+  <system-out><![CDATA[Test Run Finished: TransferServerTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly            0,50            0,50           
+Total points possible: 0.5
+Total points earned: 0.5
+
+]]></system-out>
+  <system-err><![CDATA[Nov 15, 2023 8:44:23 PM dslab.transfer.TransferServerTest tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly
+INFO: Starting thread with component dslab.transfer.TransferServer@4b74066d
+Nov 15, 2023 8:44:23 PM dslab.transfer.TransferServerTest tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for socket to open on port 12580
+Nov 15, 2023 8:44:23 PM dslab.transfer.TransferServerTest tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly
+INFO: Shutting down component dslab.transfer.TransferServer@4b74066d
+Nov 15, 2023 8:44:26 PM dslab.transfer.TransferServerTest tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for thread to stop for component dslab.transfer.TransferServer@4b74066d
+Nov 15, 2023 8:47:01 PM dslab.transfer.TransferServerTest tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly
+INFO: Starting thread with component dslab.transfer.TransferServer@2386d2b7
+Nov 15, 2023 8:47:01 PM dslab.transfer.TransferServerTest tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for socket to open on port 12580
+Nov 15, 2023 8:47:01 PM dslab.transfer.TransferServerTest tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly
+INFO: Shutting down component dslab.transfer.TransferServer@2386d2b7
+Nov 15, 2023 8:47:04 PM dslab.transfer.TransferServerTest tfs_00_runAndShutdownTransferServer_createsAndStopsTcpSocketCorrectly
+INFO: Waiting for thread to stop for component dslab.transfer.TransferServer@2386d2b7
+]]></system-err>
+</testsuite>

@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class TransferServer implements ITransferServer, Runnable {
-    static int CORE_COUNT = Runtime.getRuntime().availableProcessors();
+    static int CORE_COUNT = 4;
 
     private final String componentId;
     private final List<Socket> sockets;

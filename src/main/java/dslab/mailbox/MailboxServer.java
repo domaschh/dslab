@@ -21,7 +21,7 @@ import dslab.protocols.TransferProtocol;
 import dslab.util.Config;
 
 public class MailboxServer implements IMailboxServer, Runnable {
-    static int POOL_SIZE = Runtime.getRuntime().availableProcessors();
+    static int POOL_SIZE = 2;
     private final String componentId;
     private final List<Socket> sockets;
     private final Shell shell;
