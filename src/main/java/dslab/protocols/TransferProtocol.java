@@ -58,7 +58,6 @@ public class TransferProtocol implements Runnable {
             Config users = new Config(config.getString("users.config"));
             users.listKeys().forEach(user -> optionaldatabase.put(user, new ConcurrentLinkedQueue<>()));
         } catch (MissingResourceException e ) {
-            shell.out().println("Error loading user.config");
         }
     }
 

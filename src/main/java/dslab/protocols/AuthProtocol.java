@@ -92,6 +92,7 @@ public class AuthProtocol implements Runnable {
                             return;
                         }
                     }
+                    shell.out().println("error no mail found for given id");
                 }
             } else {
                 shell.out().println("error wrong number of arguments");

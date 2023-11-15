@@ -83,8 +83,6 @@ public class TransferServer implements ITransferServer, Runnable {
                         shell.out().println("Mail sent");
                         s.close();
                     } catch (IOException e) {
-                        shell.out().println("Sending mail failed");
-                        throw new RuntimeException(e);
                     }
                 });
                 this.sendMailToMonitoringServer(completeMail);

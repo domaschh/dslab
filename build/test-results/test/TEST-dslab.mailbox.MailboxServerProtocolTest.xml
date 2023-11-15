@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dslab.mailbox.MailboxServerProtocolTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-15T13:49:43" hostname="Thomass-MacBook-Pro-2.local" time="4.059">
+  <properties/>
+  <testcase name="mbx_09_delete_removesMail" classname="dslab.mailbox.MailboxServerProtocolTest" time="4.059"/>
+  <system-out><![CDATA[Test Run Finished: MailboxServerProtocolTest
+Test Name                                                                        Max Points      Earned Points  
+-------------------------------------------------------------------              ----------      ------------   
+mbx_09_delete_removesMail                                                        0,50            0,50           
+Total points possible: 0.5
+Total points earned: 0.5
+
+]]></system-out>
+  <system-err><![CDATA[Nov 15, 2023 2:49:43 PM dslab.mailbox.MailboxServerProtocolTest setUp
+INFO: Waiting for server sockets to appear
+]]></system-err>
+</testsuite>
